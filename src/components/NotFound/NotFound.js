@@ -6,7 +6,7 @@ const NotFoundPage = () => {
       <h1 style={styles.errorCode}>404</h1>
       <p style={styles.message}>Page Not Found</p>
       <button style={styles.button} onClick={() => window.location.href = "/"}>
-        Back to Homepage
+        Back to Homepage 
       </button>
     </div>
   );
