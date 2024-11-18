@@ -8,7 +8,7 @@ const NotFoundPage = () => {
       <button style={styles.button} onClick={() => window.location.href = "/"}>
         Back to Homepage 
       </button>
-    </div>
+    </div>  
   );
 };
 
