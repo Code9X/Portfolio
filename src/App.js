@@ -17,6 +17,7 @@ import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Connect from "./components/Connect/Connect";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   const [load, upadateLoad] = useState(true);
@@ -41,7 +42,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/connect" element={<Connect />} />
-          <Route path="*" element={<Navigate to="/"/>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </div>
