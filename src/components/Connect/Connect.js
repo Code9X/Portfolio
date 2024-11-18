@@ -3,7 +3,7 @@ import { Form, Button, Container, Row, Col, Alert } from "react-bootstrap";
 import emailjs from "emailjs-com";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { countries } from "./Countries";
-import ConnectImg from "../../Assets/Connect.png"; 
+import ConnectImg from "../../Assets/Connect.png";
 
 function Connect() {
   const [formData, setFormData] = useState({
@@ -16,7 +16,7 @@ function Connect() {
 
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
-  const [showAlert, setShowAlert] = useState(false); // To control visibility of the alert
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -72,27 +72,25 @@ function Connect() {
   return (
     <Container fluid className="min-vh-100 d-flex flex-column">
       <Row className="justify-content-between align-items-center flex-grow-1">
-        {/* Left Column for Image */}
         <Col md={6} className="text-center">
-        <img
-  src={ConnectImg} // Using the imported ConnectImg
-  alt="Connect"
-  className="img-fluid"
-  style={{ maxWidth: "50%", height: "auto", borderRadius: "10px" }}
-  onError={(e) => e.target.src = "https://via.placeholder.com/400x400"} // Fallback to placeholder on error
-/>
+          <img
+            src={ConnectImg}
+            alt="Connect"
+            className="img-fluid"
+            style={{ maxWidth: "50%", height: "auto", borderRadius: "10px" }}
+            onError={(e) => e.target.src = "https://via.placeholder.com/400x400"}
+          />
         </Col>
 
-        {/* Right Column for Form */}
         <Col md={6}>
           <h2 className="text-center mb-4" style={{ color: "white" }}>Connect Me</h2>
 
           {showAlert && (
             <Alert
               variant="success"
-              onClose={() => setShowAlert(false)} // Allow manual closing
+              onClose={() => setShowAlert(false)}
               style={{ position: "relative" }}
-              dismissible={false} // Disable the default close button
+              dismissible={false}
             >
               Your message has been sent successfully!
               <span
@@ -104,7 +102,7 @@ function Connect() {
                   fontSize: "16px",
                   color: "black",
                 }}
-                onClick={() => setShowAlert(false)} // Custom close button
+                onClick={() => setShowAlert(false)}
               >
                 &times;
               </span>
@@ -115,12 +113,12 @@ function Connect() {
           <Form onSubmit={handleSubmit}>
             {/* Name Field */}
             <Row className="mb-3">
-              <Col sm={4} className="d-flex align-items-center">
-                <Form.Label style={{ color: "white" }}>
+              <Col sm={3} className="d-flex align-items-center">
+                <Form.Label style={{ color: "white", marginBottom: "0" }}>
                   Name <span className="text-danger">*</span>
                 </Form.Label>
               </Col>
-              <Col sm={8}>
+              <Col sm={8}> {/* Reduced the width of the input field */}
                 <Form.Control
                   type="text"
                   placeholder="Enter your name"
@@ -128,18 +126,19 @@ function Connect() {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  style={{ padding: "0.375rem 0.75rem" }} // Adjust padding
                 />
               </Col>
             </Row>
 
             {/* Address Field */}
             <Row className="mb-3">
-              <Col sm={4} className="d-flex align-items-center">
-                <Form.Label style={{ color: "white" }}>
+              <Col sm={3} className="d-flex align-items-center">
+                <Form.Label style={{ color: "white", marginBottom: "0" }}>
                   Address <span className="text-danger">*</span>
                 </Form.Label>
               </Col>
-              <Col sm={8}>
+              <Col sm={8}> {/* Reduced the width of the input field */}
                 <Form.Control
                   type="text"
                   placeholder="Enter your address"
@@ -147,18 +146,19 @@ function Connect() {
                   value={formData.address}
                   onChange={handleChange}
                   required
+                  style={{ padding: "0.375rem 0.75rem" }} // Adjust padding
                 />
               </Col>
             </Row>
 
             {/* Contact Field */}
             <Row className="mb-3">
-              <Col sm={4} className="d-flex align-items-center">
-                <Form.Label style={{ color: "white" }}>
+              <Col sm={3} className="d-flex align-items-center">
+                <Form.Label style={{ color: "white", marginBottom: "0" }}>
                   Contact <span className="text-danger">*</span>
                 </Form.Label>
               </Col>
-              <Col sm={8}>
+              <Col sm={8}> {/* Reduced the width of the input field */}
                 <Form.Control
                   type="tel"
                   placeholder="Enter your contact number"
@@ -166,23 +166,25 @@ function Connect() {
                   value={formData.contact}
                   onChange={handleChange}
                   required
+                  style={{ padding: "0.375rem 0.75rem" }} // Adjust padding
                 />
               </Col>
             </Row>
 
             {/* Country Field */}
             <Row className="mb-3">
-              <Col sm={4} className="d-flex align-items-center">
-                <Form.Label style={{ color: "white" }}>
+              <Col sm={3} className="d-flex align-items-center">
+                <Form.Label style={{ color: "white", marginBottom: "0" }}>
                   Country <span className="text-danger">*</span>
                 </Form.Label>
               </Col>
-              <Col sm={8}>
+              <Col sm={8}> {/* Reduced the width of the input field */}
                 <Form.Select
                   name="country"
                   value={formData.country}
                   onChange={handleChange}
                   required
+                  style={{ padding: "0.375rem 0.75rem" }} // Adjust padding
                 >
                   <option value="">Select your country</option>
                   {countries.map((country, index) => (
@@ -196,12 +198,12 @@ function Connect() {
 
             {/* Enquiry Field */}
             <Row className="mb-3">
-              <Col sm={4} className="d-flex align-items-center">
-                <Form.Label style={{ color: "white" }}>
-                  Enquiry <span className="text-danger">*</span>
+              <Col sm={3} className="d-flex align-items-center">
+                <Form.Label style={{ color: "white", marginBottom: "0" }}>
+                  Enquiry
                 </Form.Label>
               </Col>
-              <Col sm={8}>
+              <Col sm={8}> {/* Reduced the width of the input field */}
                 <Form.Control
                   as="textarea"
                   rows={4}
@@ -209,13 +211,18 @@ function Connect() {
                   name="enquiry"
                   value={formData.enquiry}
                   onChange={handleChange}
+                  style={{ padding: "0.375rem 0.75rem" }} // Adjust padding
                 />
               </Col>
             </Row>
+            <Row className="mb-3">
+              <Col sm={3} /><Col sm={8}>
+    <Button variant="primary" type="submit" className="w-100">
+      Submit
+    </Button>
+  </Col>
+</Row>
 
-            <Button variant="primary" type="submit" className="w-100">
-              Submit
-            </Button>
           </Form>
         </Col>
       </Row>
@@ -223,4 +230,4 @@ function Connect() {
   );
 }
 
-export default Connect;
+export default Connect
