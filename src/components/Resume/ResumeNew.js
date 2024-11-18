@@ -24,7 +24,14 @@ function ResumeNew() {
     <div>
       <Container fluid className="resume-section">
         <Particle />
-        <Row style={{ justifyContent: "center", position: "relative" }}>
+        <Row
+          style={{
+            justifyContent: "center",
+            position: "relative",
+            paddingLeft: width < 768 ? "15px" : "0", // Mobile padding
+            paddingRight: width < 768 ? "15px" : "0", // Mobile padding
+          }}
+        >
           <Button
             variant="primary"
             href={pdf}
@@ -36,7 +43,13 @@ function ResumeNew() {
           </Button>
         </Row>
 
-        <Row className="resume">
+        <Row
+          className="resume"
+          style={{
+            paddingLeft: width < 768 ? "15px" : "0", // Mobile padding
+            paddingRight: width < 768 ? "15px" : "0", // Mobile padding
+          }}
+        >
           <Document
             file={pdf}
             onLoadSuccess={onDocumentLoadSuccess}
@@ -47,14 +60,21 @@ function ResumeNew() {
               <div key={`page_${index + 1}`} style={{ marginBottom: "20px" }}>
                 <Page
                   pageNumber={index + 1}
-                  scale={width > 786 ? 1.5 : 0.8}
+                  scale={width > 786 ? 1.5 : 0.8} // Scale for mobile and large screens
                 />
               </div>
             ))}
           </Document>
         </Row>
 
-        <Row style={{ justifyContent: "center", position: "relative" }}>
+        <Row
+          style={{
+            justifyContent: "center",
+            position: "relative",
+            paddingLeft: width < 768 ? "15px" : "0", // Mobile padding
+            paddingRight: width < 768 ? "15px" : "0", // Mobile padding
+          }}
+        >
           <Button
             variant="primary"
             href={pdf}
