@@ -16,7 +16,7 @@ function Connect() {
 
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
-  const [showAlert, setShowAlert] = useState(false); // To control visibility of the alert
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
