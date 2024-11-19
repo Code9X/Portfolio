@@ -8,17 +8,18 @@ function AboutCard() {
     <Card className="quote-card-view">
       <Card.Body>
         <blockquote className="blockquote mb-0">
-          <p style={{ textAlign: "justify" }}>
-            Hi Everyone, I am <span className="purple">Sebin Saji </span>
-            from <span className="purple"> Kerala, India.</span>
-            <br />
-            I am currently employed as a software developer in Trivandrum.
-            <br />
-            I have completed BTech in Electronics and Communication and have since switched to coding.
-            <br />
-            <br />
-            Apart from coding, some other activities that I love to do!
-          </p>
+        <p style={{ textAlign: "left" }}>
+  Hello, I am <span className="purple">Sebin Saji</span> from <span className="purple">Kerala, India.</span>
+  <br />
+  I currently work as a software developer in Trivandrum.
+  <br />
+  I have an Engineering degree in Electronics and Communication, and I transitioned into coding thereafter.
+  <br />
+  <br />
+  Apart from coding, some other activities that I love to do!
+</p>
+
+
           <ul>
           <li className="about-activity">
           <MdSportsEsports />  Playing Games

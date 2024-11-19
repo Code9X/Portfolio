@@ -19,15 +19,15 @@ function Home2() {
               LET ME <span className="purple"> INTRODUCE </span> MYSELF
             </h1>
             <p className="home-about-body">
-              Sebin here, hope i can help you with your project!
+            Sebin here, hope I can help you with your project!
               <br />
               <br />I know
               <i>
-                <b className="purple"> C#, Javascript, Postgres, Docker ...   </b>
+                <b className="purple"> C#, JavaScript, PostgreSQL, Docker, and more.   </b>
               </i>
               <br />
               <br />
-              My field of Interest's are building new &nbsp;
+              My areas of interest are building new &nbsp;
               <i>
                 <b className="purple">Web Applications and APIs </b>
               </i>
