@@ -9,29 +9,24 @@ import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 function ResumeNew() {
-  const [width, setWidth] = useState(1200);
-  const [numPages, setNumPages] = useState(null); // Total pages state
+  const [width, setWidth] = useState(window.innerWidth);
+  const [numPages, setNumPages] = useState(null);
 
   useEffect(() => {
-    setWidth(window.innerWidth);
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   };
-
-  return (
+  
+  return ( 
     <div>
       <Container fluid className="resume-section">
         <Particle />
-        <Row
-          style={{
-            justifyContent: "center",
-            position: "relative",
-            paddingLeft: width < 768 ? "15px" : "0", // Mobile padding
-            paddingRight: width < 768 ? "15px" : "0", // Mobile padding
-          }}
-        >
+        <Row className="justify-content-center mb-4">
           <Button
             variant="primary"
             href={pdf}
@@ -43,38 +38,40 @@ function ResumeNew() {
           </Button>
         </Row>
 
-        <Row
-          className="resume"
-          style={{
-            paddingLeft: width < 768 ? "15px" : "0", // Mobile padding
-            paddingRight: width < 768 ? "15px" : "0", // Mobile padding
-          }}
-        >
-          <Document
-            file={pdf}
-            onLoadSuccess={onDocumentLoadSuccess}
-            className="d-flex flex-column align-items-center"
+        <Row className="justify-content-center">
+          <div
+            style={{
+              width: "100%", // Ensure full width usage
+              maxWidth: width > 786 ? "75%" : "100%", // Adjust for larger screens
+              padding: width < 768 ? "15px" : "0", // Add padding for mobile
+              overflowX: "hidden", // Prevent horizontal scroll issues
+            }}
           >
-            {/* Render pages vertically */}
-            {Array.from(new Array(numPages), (el, index) => (
-              <div key={`page_${index + 1}`} style={{ marginBottom: "20px" }}>
-                <Page
-                  pageNumber={index + 1}
-                  scale={width > 786 ? 1.5 : 0.8} // Scale for mobile and large screens
-                />
-              </div>
-            ))}
-          </Document>
+            <Document
+              file={pdf}
+              onLoadSuccess={onDocumentLoadSuccess}
+              className="d-flex flex-column align-items-center"
+            >
+              {Array.from(new Array(numPages), (el, index) => (
+                <div
+                  key={`page_${index + 1}`}
+                  style={{
+                    marginBottom: "20px",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Page
+                    pageNumber={index + 1}
+                    width={width > 768 ? 600 : 360} // Adjust width for mobile
+                  />
+                </div>
+              ))}
+            </Document>
+          </div>
         </Row>
 
-        <Row
-          style={{
-            justifyContent: "center",
-            position: "relative",
-            paddingLeft: width < 768 ? "15px" : "0", // Mobile padding
-            paddingRight: width < 768 ? "15px" : "0", // Mobile padding
-          }}
-        >
+        <Row className="justify-content-center mt-4">
           <Button
             variant="primary"
             href={pdf}

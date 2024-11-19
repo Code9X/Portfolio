@@ -8,6 +8,7 @@ import ConnectImg from "../../Assets/Connect.png";
 function Connect() {
   const [formData, setFormData] = useState({
     name: "",
+    email: "",
     address: "",
     contact: "",
     country: "",
@@ -24,22 +25,30 @@ function Connect() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  
+    // Email validation using regex
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  if (!emailPattern.test(formData.email)) {
+    setError("Please enter a valid email address.");
+    return;
+  }
 
-    if (!formData.name || !formData.address || !formData.contact || !formData.country) {
+    if (!formData.name || !formData.email || !formData.address || !formData.contact || !formData.country) {
       setError("Please fill in all required fields.");
       return;
     }
-    setError(""); // Clear error
-
-    // Send email using Email.js
+    setError("");
+  
     const emailParams = {
       name: formData.name,
+      email: formData.email,  // This will still be used in the template body
       address: formData.address,
       contact: formData.contact,
       country: formData.country,
       enquiry: formData.enquiry || "No enquiry provided",
+      reply_to: formData.email, // This will set the 'From' email address for replies
     };
-
+  
     emailjs
       .send(
         process.env.REACT_APP_EMAILJS_SERVICE_ID,
@@ -49,16 +58,16 @@ function Connect() {
       )
       .then(() => {
         setSubmitted(true);
-        setShowAlert(true); // Show alert when submitted
+        setShowAlert(true);
         setFormData({
           name: "",
+          email: "", // Clear email field
           address: "",
           contact: "",
           country: "",
           enquiry: "",
         });
-
-        // Auto-dismiss alert after 3 seconds
+  
         setTimeout(() => {
           setShowAlert(false);
         }, 3000);
@@ -68,57 +77,46 @@ function Connect() {
         console.error(err);
       });
   };
+  
 
   return (
-    <Container fluid className="min-vh-100 d-flex flex-column">
-      <Row className="justify-content-between align-items-center flex-grow-1">
-        <Col md={6} className="text-center">
+    <Container fluid className="min-vh-100 d-flex flex-column px-3">
+      <Row className="justify-content-start align-items-center flex-grow-1">
+        {/* Image Column */}
+        <Col md={6} className="text-center mb-4">
           <img
             src={ConnectImg}
             alt="Connect"
             className="img-fluid"
-            style={{ maxWidth: "50%", height: "auto", borderRadius: "10px" }}
-            onError={(e) => e.target.src = "https://via.placeholder.com/400x400"}
+            style={{ maxWidth: "50%", height: "auto", borderRadius: "10px", paddingTop: "80px" }}
+            onError={(e) => (e.target.src = "https://via.placeholder.com/400x400")}
           />
         </Col>
 
-        <Col md={6}>
-          <h2 className="text-center mb-4" style={{ color: "white" }}>Connect Me</h2>
+        {/* Form Column */}
+        <Col md={5} className="pl-3 pr-md-5">
+          <h2 className="text-center mb-4" style={{ color: "white" ,paddingTop: "50px" }}>
+            Connect Me
+          </h2>
 
           {showAlert && (
             <Alert
               variant="success"
               onClose={() => setShowAlert(false)}
-              style={{ position: "relative" }}
-              dismissible={false}
+              dismissible
             >
               Your message has been sent successfully!
-              <span
-                style={{
-                  position: "absolute",
-                  top: "10px",
-                  right: "10px",
-                  cursor: "pointer",
-                  fontSize: "16px",
-                  color: "black",
-                }}
-                onClick={() => setShowAlert(false)}
-              >
-                &times;
-              </span>
             </Alert>
           )}
           {error && <Alert variant="danger">{error}</Alert>}
 
           <Form onSubmit={handleSubmit}>
             {/* Name Field */}
-            <Row className="mb-3">
-              <Col sm={3} className="d-flex align-items-center">
-                <Form.Label style={{ color: "white", marginBottom: "0" }}>
-                  Name <span className="text-danger">*</span>
-                </Form.Label>
-              </Col>
-              <Col sm={8}> {/* Reduced the width of the input field */}
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3} style={{ color: "white" }}>
+                Name <span className="text-danger">*</span>
+              </Form.Label>
+              <Col sm={9}>
                 <Form.Control
                   type="text"
                   placeholder="Enter your name"
@@ -126,19 +124,33 @@ function Connect() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  style={{ padding: "0.375rem 0.75rem" }} // Adjust padding
                 />
               </Col>
-            </Row>
+            </Form.Group>
+
+            {/* Email Field */}
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3} style={{ color: "white" }}>
+                Email <span className="text-danger">*</span>
+              </Form.Label>
+              <Col sm={9}>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter your email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </Col>
+            </Form.Group>
 
             {/* Address Field */}
-            <Row className="mb-3">
-              <Col sm={3} className="d-flex align-items-center">
-                <Form.Label style={{ color: "white", marginBottom: "0" }}>
-                  Address <span className="text-danger">*</span>
-                </Form.Label>
-              </Col>
-              <Col sm={8}> {/* Reduced the width of the input field */}
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3} style={{ color: "white" }}>
+                Address <span className="text-danger">*</span>
+              </Form.Label>
+              <Col sm={9}>
                 <Form.Control
                   type="text"
                   placeholder="Enter your address"
@@ -146,19 +158,16 @@ function Connect() {
                   value={formData.address}
                   onChange={handleChange}
                   required
-                  style={{ padding: "0.375rem 0.75rem" }} // Adjust padding
                 />
               </Col>
-            </Row>
+            </Form.Group>
 
             {/* Contact Field */}
-            <Row className="mb-3">
-              <Col sm={3} className="d-flex align-items-center">
-                <Form.Label style={{ color: "white", marginBottom: "0" }}>
-                  Contact <span className="text-danger">*</span>
-                </Form.Label>
-              </Col>
-              <Col sm={8}> {/* Reduced the width of the input field */}
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3} style={{ color: "white" }}>
+                Contact <span className="text-danger">*</span>
+              </Form.Label>
+              <Col sm={9}>
                 <Form.Control
                   type="tel"
                   placeholder="Enter your contact number"
@@ -166,25 +175,21 @@ function Connect() {
                   value={formData.contact}
                   onChange={handleChange}
                   required
-                  style={{ padding: "0.375rem 0.75rem" }} // Adjust padding
                 />
               </Col>
-            </Row>
+            </Form.Group>
 
             {/* Country Field */}
-            <Row className="mb-3">
-              <Col sm={3} className="d-flex align-items-center">
-                <Form.Label style={{ color: "white", marginBottom: "0" }}>
-                  Country <span className="text-danger">*</span>
-                </Form.Label>
-              </Col>
-              <Col sm={8}> {/* Reduced the width of the input field */}
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3} style={{ color: "white" }}>
+                Country <span className="text-danger">*</span>
+              </Form.Label>
+              <Col sm={9}>
                 <Form.Select
                   name="country"
                   value={formData.country}
                   onChange={handleChange}
                   required
-                  style={{ padding: "0.375rem 0.75rem" }} // Adjust padding
                 >
                   <option value="">Select your country</option>
                   {countries.map((country, index) => (
@@ -194,16 +199,14 @@ function Connect() {
                   ))}
                 </Form.Select>
               </Col>
-            </Row>
+            </Form.Group>
 
             {/* Enquiry Field */}
-            <Row className="mb-3">
-              <Col sm={3} className="d-flex align-items-center">
-                <Form.Label style={{ color: "white", marginBottom: "0" }}>
-                  Enquiry
-                </Form.Label>
-              </Col>
-              <Col sm={8}> {/* Reduced the width of the input field */}
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3} style={{ color: "white" }}>
+                Enquiry
+              </Form.Label>
+              <Col sm={9}>
                 <Form.Control
                   as="textarea"
                   rows={4}
@@ -211,18 +214,18 @@ function Connect() {
                   name="enquiry"
                   value={formData.enquiry}
                   onChange={handleChange}
-                  style={{ padding: "0.375rem 0.75rem" }} // Adjust padding
                 />
               </Col>
-            </Row>
-            <Row className="mb-3">
-              <Col sm={3} /><Col sm={8}>
-    <Button variant="primary" type="submit" className="w-100">
-      Submit
-    </Button>
-  </Col>
-</Row>
+            </Form.Group>
 
+            {/* Submit Button */}
+            <Row className="mb-3">
+              <Col sm={{ span: 9, offset: 3 }}>
+                <Button variant="primary" type="submit" className="w-100">
+                  Submit
+                </Button>
+              </Col>
+            </Row>
           </Form>
         </Col>
       </Row>
@@ -230,4 +233,4 @@ function Connect() {
   );
 }
 
-export default Connect
+export default Connect;
