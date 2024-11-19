@@ -21,7 +21,7 @@ function ResumeNew() {
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   };
-
+ 
   return (
     <div>
       <Container fluid className="resume-section">
