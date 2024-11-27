@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Particle from "../Particle";
-import pdf from "../../Assets/../Assets/Resume.pdf";
 import { AiOutlineDownload } from "react-icons/ai";
-import { Document, Page, pdfjs } from "react-pdf";
+import { Document, Page, pdfjs } from "react-pdf";  
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import pdf from "../../Assets/Resume.pdf"; 
+
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 function ResumeNew() {
@@ -21,12 +22,18 @@ function ResumeNew() {
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   };
-  
-  return ( 
+
+  return (
     <div>
       <Container fluid className="resume-section">
         <Particle />
-        <Row className="justify-content-center mb-4">
+        <Row
+          style={{
+            justifyContent: "center",
+            position: "relative",
+            marginBottom: "30px",
+          }}
+        >
           <Button
             variant="primary"
             href={pdf}
@@ -41,10 +48,10 @@ function ResumeNew() {
         <Row className="justify-content-center">
           <div
             style={{
-              width: "100%", // Ensure full width usage
-              maxWidth: width > 786 ? "75%" : "100%", // Adjust for larger screens
-              padding: width < 768 ? "15px" : "0", // Add padding for mobile
-              overflowX: "hidden", // Prevent horizontal scroll issues
+              width: "100%",
+              maxWidth: width > 786 ? "75%" : "100%",
+              padding: width < 768 ? "15px" : "0",
+              overflowX: "hidden",
             }}
           >
             <Document
@@ -63,7 +70,7 @@ function ResumeNew() {
                 >
                   <Page
                     pageNumber={index + 1}
-                    width={width > 768 ? 600 : 360} // Adjust width for mobile
+                    width={width > 768 ? 600 : 360}
                   />
                 </div>
               ))}
@@ -71,7 +78,7 @@ function ResumeNew() {
           </div>
         </Row>
 
-        <Row className="justify-content-center mt-4">
+        <Row style={{ justifyContent: "center", position: "relative" }}>
           <Button
             variant="primary"
             href={pdf}
