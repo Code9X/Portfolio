@@ -1,14 +1,19 @@
 import React from "react";
+import Particle from "../Particle";
 
 const NotFoundPage = () => {
   return (
-    <div style={styles.container}>
+    <div className="not-found-page" style={styles.container}>
+      <Particle />
       <h1 style={styles.errorCode}>404</h1>
       <p style={styles.message}>Page Not Found</p>
-      <button style={styles.button} onClick={() => window.location.href = "/"}>
-        Back to Homepage 
+      <button
+        style={styles.button}
+        onClick={() => (window.location.href = "/")}
+      >
+        Back to Homepage
       </button>
-    </div>  
+    </div>
   );
 };
 
@@ -20,16 +25,20 @@ const styles = {
     justifyContent: "center",
     height: "100vh",
     textAlign: "center",
+    backgroundColor: "transparent", // Ensuring background is transparent
+    position: "relative", // Ensure proper stacking context
   },
   errorCode: {
-    fontSize: "4rem",
+    fontSize: "5rem",
     margin: "0",
-    color: "#2c2c2c", // Darker gray color
+    color: "#2c2c2c",
+    zIndex: 1, // Make sure it is above the background
   },
   message: {
-    fontSize: "1.25rem",
+    fontSize: "1.50rem",
     marginBottom: "1.5rem",
-    color: "#4b4b4b", // Slightly lighter dark gray
+    color: "#4b4b4b",
+    zIndex: 1, // Make sure it is above the background
   },
   button: {
     padding: "10px 20px",
@@ -39,6 +48,8 @@ const styles = {
     backgroundColor: "#fff",
     borderRadius: "4px",
     color: "#2c2c2c",
+    zIndex: 10, // Ensure the button stays above the particle animation
+    position: "relative", // So the z-index works
   },
 };
 
