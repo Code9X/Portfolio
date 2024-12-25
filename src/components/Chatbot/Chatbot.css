@@ -1,0 +1,53 @@
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .chatbot-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #6a0dad; /* Purple background */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Make sure the popup is responsive */
+  .chatbot-popup {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 200px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    text-align: center;
+    max-width: 90vw;  /* Make popup responsive */
+  }
+  
+  /* Adjust the position of the chatbot icon on smaller screens */
+  @media (max-width: 768px) {
+    .chatbot-container {
+      bottom: 10px;
+      right: 10px;
+    }
+  
+    .chatbot-icon {
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+    }
+  
+    .chatbot-popup {
+      width: 150px;  /* Smaller popup on mobile */
+    }
+  }
+  

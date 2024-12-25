@@ -23,7 +23,7 @@ function Home2() {
               <br />
               <br />I know
               <i>
-                <b className="purple"> C#, JavaScript, PostgreSQL, Docker, and more.   </b>
+                <b className="purple"> C#, JavaScript, React, PostgreSQL, Docker, Jenkins and more.   </b>
               </i>
               <br />
               <br />
