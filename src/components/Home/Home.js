@@ -4,6 +4,7 @@ import homeLogo from "../../Assets/home-main.svg";
 import Particle from "../Particle";
 import Home2 from "./Home2";
 import Type from "./Type";
+import Chatbot from "../Chatbot/Chatbot";
 
 function Home() {
   return (
@@ -35,13 +36,14 @@ function Home() {
                 src={homeLogo}
                 alt="home pic"
                 className="img-fluid"
-                style={{ maxHeight: "450px" }}
+                style={{ maxHeight: "450px", width: "100%" }}
               />
             </Col>
           </Row>
         </Container>
       </Container>
       <Home2 />
+      <Chatbot />
     </section>
   );
 }
