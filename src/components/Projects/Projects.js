@@ -58,7 +58,7 @@ function Projects() {
               isBlog={false}
               title="Olx Clone"
               description="An OLX clone utilizing Firebase authentication, enabling users to securely buy, sell, and chat in real time."
-              ghLink="https://github.com/Code9X/Olx-Clone"
+              ghLink="https://github.com/Code9X/Olx-Clone" 
             />
           </Col>
 
