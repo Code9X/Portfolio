@@ -2,9 +2,11 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
-import editor from "../../Assets/Projects/codeEditor.png";
-import chatify from "../../Assets/Projects/chatify.png";
-import bitsOfCode from "../../Assets/Projects/blog.png";
+import Olx from "../../Assets/Projects/Olx.png";
+import Netflix from "../../Assets/Projects/Netflix.png";
+import ToDo from "../../Assets/Projects/ToDo.png";
+import ExpressCart from "../../Assets/Projects/ExpressCart.png";
+import Portfolio from "../../Assets/Projects/Portfolio.png";
 import Chatbot from "../Chatbot/Chatbot";
 
 function Projects() {
@@ -21,7 +23,7 @@ function Projects() {
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={chatify}
+              imgPath={ExpressCart}
               isBlog={false}
               title="ExpressCart"
               description="E-commerce Website built using ASP.NET Core."
@@ -32,10 +34,21 @@ function Projects() {
 
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={bitsOfCode}
+              imgPath={Portfolio}
+              isBlog={false}
+              title="Portfolio"
+              description="Personal website built using React."
+              ghLink="https://github.com/Code9X/Portfolio"
+              // demoLink="https://blogs.soumya-jit.tech/"
+            />
+          </Col>
+
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={Netflix}
               isBlog={false}
               title="Netflix Clone"
-              description="A clone to Netflix."
+              description="A Netflix clone that showcases movies from different genres, using the TMDB API."
               ghLink="https://github.com/Code9X/Netflix-clone"
               // demoLink="https://blogs.soumya-jit.tech/"
             />
@@ -43,10 +56,20 @@ function Projects() {
 
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={editor}
+              imgPath={Olx}
               isBlog={false}
-              title="TODO.io"
-              description="To-do"
+              title="Olx Clone"
+              description="An OLX clone utilizing Firebase authentication, enabling users to securely buy, sell, and chat in real time."
+              ghLink="https://github.com/Code9X/Netflix-clone"
+            />
+          </Col>
+
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={ToDo}
+              isBlog={false}
+              title="To-Do"
+              description="It is a To-Do app that uses Google Firebase as the backend."
               ghLink="https://github.com/Code9X/TODO-List"
               // demoLink="https://editor.soumya-jit.tech/"              
             />
