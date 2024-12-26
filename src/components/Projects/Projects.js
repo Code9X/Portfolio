@@ -28,7 +28,7 @@ function Projects() {
               title="ExpressCart"
               description="E-commerce Website built using ASP.NET Core."
               ghLink="https://github.com/Code9X/ExpressCart"
-              // demoLink="https://chatify-49.web.app/"
+              // demoLink=""
             />
           </Col>
 
@@ -39,7 +39,6 @@ function Projects() {
               title="Portfolio"
               description="Personal website built using React."
               ghLink="https://github.com/Code9X/Portfolio"
-              // demoLink="https://blogs.soumya-jit.tech/"
             />
           </Col>
 
@@ -50,7 +49,6 @@ function Projects() {
               title="Netflix Clone"
               description="A Netflix clone that showcases movies from different genres, using the TMDB API."
               ghLink="https://github.com/Code9X/Netflix-clone"
-              // demoLink="https://blogs.soumya-jit.tech/"
             />
           </Col>
 
@@ -60,7 +58,8 @@ function Projects() {
               isBlog={false}
               title="Olx Clone"
               description="An OLX clone utilizing Firebase authentication, enabling users to securely buy, sell, and chat in real time."
-              ghLink="https://github.com/Code9X/Netflix-clone"
+              ghLink="https://github.com/Code9X/Olx-Clone" 
+              // demoLink=""
             />
           </Col>
 
@@ -70,8 +69,7 @@ function Projects() {
               isBlog={false}
               title="To-Do"
               description="It is a To-Do app that uses Google Firebase as the backend."
-              ghLink="https://github.com/Code9X/TODO-List"
-              // demoLink="https://editor.soumya-jit.tech/"              
+              ghLink="https://github.com/Code9X/TODO-List"       
             />
           </Col>
         </Row>
