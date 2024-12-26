@@ -6,6 +6,7 @@ import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
 import laptopImg from "../../Assets/about.png";
 import Toolstack from "./Toolstack";
+import Chatbot from "../Chatbot/Chatbot";
 
 function About() {
   return (
@@ -47,6 +48,7 @@ function About() {
 
         <Github />
       </Container>
+      <Chatbot />
     </Container>
   );
 }

@@ -5,6 +5,7 @@ import Particle from "../Particle";
 import editor from "../../Assets/Projects/codeEditor.png";
 import chatify from "../../Assets/Projects/chatify.png";
 import bitsOfCode from "../../Assets/Projects/blog.png";
+import Chatbot from "../Chatbot/Chatbot";
 
 function Projects() {
   return (
@@ -52,6 +53,7 @@ function Projects() {
           </Col>
         </Row>
       </Container>
+      <Chatbot />
     </Container>
   );
 }

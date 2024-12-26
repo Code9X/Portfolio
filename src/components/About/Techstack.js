@@ -1,22 +1,31 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import { SiCsharp, SiPostgresql, SiMysql, SiAzureartifacts, SiAzuredataexplorer, SiAzuredevops, SiAzurefunctions, SiGraphql, SiMicrosoftsqlserver } from 'react-icons/si';
-import { FaAws, FaDocker, FaJenkins } from 'react-icons/fa';
-import { DiReact, DiHtml5, DiCss3, DiAws, DiJavascript, DiNodejs } from 'react-icons/di';
+import { SiCsharp, SiPostgresql, SiMysql, SiAzureartifacts, SiAzuredataexplorer, SiAzuredevops, SiAzurefunctions, SiGraphql, SiMicrosoftsqlserver, SiJavascript, SiGit, SiDotnet } from 'react-icons/si';
+import { FaAws, FaDocker, FaGit, FaJenkins } from 'react-icons/fa';
+import { DiReact, DiHtml5, DiCss3, DiAws, DiJavascript, DiNodejs, DiDotnet } from 'react-icons/di';
 import { BsBootstrap } from "react-icons/bs";
 import WunderGraphIcon from "./WunderGraphIcon";
 
 function Techstack() {
   return (
     <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
+      <Col xs={4} md={2} className="tech-icons" title=".NET">
+        <SiDotnet />
+      </Col>
       <Col xs={4} md={2} className="tech-icons" title="C#">
         <SiCsharp />
       </Col>
-      <Col xs={4} md={2} className="tech-icons" title="Node.js">
-        <DiNodejs />
+      <Col xs={4} md={2} className="tech-icons" title="Javascript">
+        <SiJavascript />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons" title="Git">
+        <SiGit />
       </Col>
       <Col xs={4} md={2} className="tech-icons" title="GraphQL">
         <SiGraphql />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons" title="WunderGraph">
+        <WunderGraphIcon />
       </Col>
       <Col xs={4} md={2} className="tech-icons" title="Docker">
         <FaDocker />
@@ -35,9 +44,6 @@ function Techstack() {
       </Col>
       <Col xs={4} md={2} className="tech-icons" title="React">
         <DiReact />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons" title="WunderGraph">
-        <WunderGraphIcon />
       </Col>
       <Col xs={4} md={2} className="tech-icons" title="HTML5">
         <DiHtml5 />
