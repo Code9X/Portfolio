@@ -1,0 +1,12 @@
+.project-card .description {
+    text-align: justify;
+    white-space: normal;
+    word-spacing: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    letter-spacing: normal !important;
+    line-height: 1.5 !important;
+    margin: 0;
+    padding: 0;
+  }
+  
