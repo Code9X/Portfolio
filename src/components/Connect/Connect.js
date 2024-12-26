@@ -28,11 +28,11 @@ function Connect() {
     e.preventDefault();
   
     // Email validation using regex
-  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-  if (!emailPattern.test(formData.email)) {
-    setError("Please enter a valid email address.");
-    return;
-  }
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!emailPattern.test(formData.email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
 
     if (!formData.name || !formData.email || !formData.address || !formData.contact || !formData.country) {
       setError("Please fill in all required fields.");
@@ -78,11 +78,12 @@ function Connect() {
         console.error(err);
       });
   };
-  
 
   return (
-    <Container fluid className="min-vh-100 d-flex flex-column px-3">
-      <Particle />
+    <Container fluid className="min-vh-100 d-flex flex-column px-3" style={{ position: "relative" }}>
+      <div className="particle-background" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: -1 }}>
+        <Particle />
+      </div>
       <Row className="justify-content-start align-items-center flex-grow-1">
         {/* Image Column */}
         <Col md={6} className="text-center mb-4">
@@ -90,23 +91,24 @@ function Connect() {
             src={ConnectImg}
             alt="Connect"
             className="img-fluid"
-            style={{ maxWidth: "50%", height: "auto", borderRadius: "10px", paddingTop: "80px" }}
+            style={{
+              maxWidth: "50%",
+              height: "auto",
+              borderRadius: "10px",
+              paddingTop: "80px",
+            }}
             onError={(e) => (e.target.src = "https://via.placeholder.com/400x400")}
           />
         </Col>
 
         {/* Form Column */}
         <Col md={5} className="pl-3 pr-md-5">
-          <h2 className="text-center mb-4" style={{ color: "white" ,paddingTop: "50px" }}>
+          <h2 className="text-center mb-4" style={{ color: "white", paddingTop: "50px" }}>
             Connect Me
           </h2>
 
           {showAlert && (
-            <Alert
-              variant="success"
-              onClose={() => setShowAlert(false)}
-              dismissible
-            >
+            <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
               Your message has been sent successfully!
             </Alert>
           )}
@@ -187,12 +189,7 @@ function Connect() {
                 Country <span className="text-danger">*</span>
               </Form.Label>
               <Col sm={9}>
-                <Form.Select
-                  name="country"
-                  value={formData.country}
-                  onChange={handleChange}
-                  required
-                >
+                <Form.Select name="country" value={formData.country} onChange={handleChange} required>
                   <option value="">Select your country</option>
                   {countries.map((country, index) => (
                     <option key={index} value={country}>
