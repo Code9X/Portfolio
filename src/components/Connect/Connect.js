@@ -4,6 +4,7 @@ import emailjs from "emailjs-com";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { countries } from "./Countries";
 import ConnectImg from "../../Assets/Connect.png";
+import Particle from "../Particle";
 
 function Connect() {
   const [formData, setFormData] = useState({
@@ -81,6 +82,7 @@ function Connect() {
 
   return (
     <Container fluid className="min-vh-100 d-flex flex-column px-3">
+      <Particle />
       <Row className="justify-content-start align-items-center flex-grow-1">
         {/* Image Column */}
         <Col md={6} className="text-center mb-4">
