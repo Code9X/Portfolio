@@ -3,9 +3,10 @@ import { Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Particle from "../Particle";
 import { AiOutlineDownload } from "react-icons/ai";
-import { Document, Page, pdfjs } from "react-pdf";  
+import { Document, Page, pdfjs } from "react-pdf";
+import ReactGA from "react-ga4";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-import pdf from "../../Assets/Resume.pdf"; 
+import pdf from "../../Assets/Resume.pdf";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
@@ -23,6 +24,16 @@ function ResumeNew() {
     setNumPages(numPages);
   };
 
+  // Custom event for tracking downloads
+  const handleDownload = () => {
+    ReactGA.event({
+      category: "Downloads",
+      action: "Downloaded Resume",
+      label: "Resume PDF",
+    });
+    console.log("Resume download event tracked.");
+  };
+
   return (
     <div>
       <Container fluid className="resume-section">
@@ -38,6 +49,7 @@ function ResumeNew() {
             variant="primary"
             href={pdf}
             target="_blank"
+            onClick={handleDownload}
             style={{ maxWidth: "250px" }}
           >
             <AiOutlineDownload />
@@ -83,6 +95,7 @@ function ResumeNew() {
             variant="primary"
             href={pdf}
             target="_blank"
+            onClick={handleDownload}
             style={{ maxWidth: "250px" }}
           >
             <AiOutlineDownload />
