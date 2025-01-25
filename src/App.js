@@ -25,7 +25,7 @@ function App() {
   // Track page views whenever the route changes
   useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: location.pathname + location.search });
-    console.log("Tracking page:", location.pathname + location.search); 
+    console.log("Tracking page:", location.pathname + location.search);   
   }, [location]);
 
   // Preloader effect
