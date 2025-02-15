@@ -5,7 +5,7 @@ import "./Chatbot.css";
 function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const whatsappNumber = process.env.REACT_APP_WHATSAPPNUMBER;
+  const whatsappNumber = process.env.REACT_APP_WHATSAPPNUMBER; 
   const whatsappLink = `https://wa.me/${whatsappNumber}`;
 
   const togglePanel = () => {
