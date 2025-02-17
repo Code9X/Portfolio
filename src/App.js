@@ -11,6 +11,8 @@ import Resume from "./components/Resume/ResumeNew";
 import ScrollToTop from "./components/ScrollToTop";
 import Connect from "./components/Connect/Connect";
 import NotFound from "./components/NotFound/NotFound";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Required CSS
 import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -52,6 +54,7 @@ function App() {
         </Routes>
         <Footer />
       </div>
+      <ToastContainer />
     </>
   );
 }

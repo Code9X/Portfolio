@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { Form, Button, Container, Row, Col, Alert } from "react-bootstrap";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import emailjs from "emailjs-com";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { countries } from "./Countries";
 import ConnectImg from "../../Assets/Connect.png";
 import Particle from "../Particle";
+import Chatbot from "../Chatbot/Chatbot";
+import { toast } from "react-toastify"; // Importing toast
+import "react-toastify/dist/ReactToastify.css"; // Import ToastContainer styles
 
 function Connect() {
   const [formData, setFormData] = useState({
@@ -18,7 +21,6 @@ function Connect() {
 
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -26,30 +28,34 @@ function Connect() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
+    // Dismiss any existing toasts before showing a new one
+    toast.dismiss();
+
     // Email validation using regex
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     if (!emailPattern.test(formData.email)) {
-      setError("Please enter a valid email address.");
+      toast.info("Please enter a valid email address.", { position: "top-center" }); // Info toast for validation
       return;
     }
 
     if (!formData.name || !formData.email || !formData.address || !formData.contact || !formData.country) {
-      setError("Please fill in all required fields.");
+      toast.info("Please fill in all required fields.", { position: "top-center" }); // Info toast for missing fields
       return;
     }
+
     setError("");
-  
+
     const emailParams = {
       name: formData.name,
-      email: formData.email,  // This will still be used in the template body
+      email: formData.email,
       address: formData.address,
       contact: formData.contact,
       country: formData.country,
       enquiry: formData.enquiry || "No enquiry provided",
       reply_to: formData.email, // This will set the 'From' email address for replies
     };
-  
+
     emailjs
       .send(
         process.env.REACT_APP_EMAILJS_SERVICE_ID,
@@ -59,22 +65,18 @@ function Connect() {
       )
       .then(() => {
         setSubmitted(true);
-        setShowAlert(true);
+        toast.success("Your message has been sent successfully!", { position: "top-center" }); // Success toast
         setFormData({
           name: "",
-          email: "", // Clear email field
+          email: "",
           address: "",
           contact: "",
           country: "",
           enquiry: "",
         });
-  
-        setTimeout(() => {
-          setShowAlert(false);
-        }, 3000);
       })
       .catch((err) => {
-        setError("An error occurred while sending the email. Please try again.");
+        toast.error("An error occurred while sending the email. Please try again.", { position: "top-center" }); // Error toast
         console.error(err);
       });
   };
@@ -106,13 +108,6 @@ function Connect() {
           <h2 className="text-center mb-4" style={{ color: "white", paddingTop: "50px" }}>
             Connect Me
           </h2>
-
-          {showAlert && (
-            <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
-              Your message has been sent successfully!
-            </Alert>
-          )}
-          {error && <Alert variant="danger">{error}</Alert>}
 
           <Form onSubmit={handleSubmit}>
             {/* Name Field */}
@@ -228,6 +223,7 @@ function Connect() {
           </Form>
         </Col>
       </Row>
+      <Chatbot />
     </Container>
   );
 }

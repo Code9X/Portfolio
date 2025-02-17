@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Particle from "../Particle";
-import { AiOutlineDownload } from "react-icons/ai";
+import { FiExternalLink } from "react-icons/fi";
 import { Document, Page, pdfjs } from "react-pdf";
 import ReactGA from "react-ga4";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import pdf from "../../Assets/Resume.pdf";
+import Chatbot from "../Chatbot/Chatbot";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
@@ -52,8 +53,8 @@ function ResumeNew() {
             onClick={handleDownload}
             style={{ maxWidth: "250px" }}
           >
-            <AiOutlineDownload />
-            &nbsp;Download CV
+            <FiExternalLink  />
+            &nbsp;Download Resume
           </Button>
         </Row>
 
@@ -98,10 +99,11 @@ function ResumeNew() {
             onClick={handleDownload}
             style={{ maxWidth: "250px" }}
           >
-            <AiOutlineDownload />
-            &nbsp;Download CV
+            <FiExternalLink  />
+            &nbsp;Download Resume
           </Button>
         </Row>
+        <Chatbot />
       </Container>
     </div>
   );

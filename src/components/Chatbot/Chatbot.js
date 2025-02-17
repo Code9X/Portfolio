@@ -1,15 +1,26 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Chatbot.css";
 
-function Chatbot() {
+const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const whatsappNumber = process.env.REACT_APP_WHATSAPPNUMBER;
-  const whatsappLink = `https://wa.me/${whatsappNumber}`;
+  const location = useLocation();
 
-  const togglePanel = () => {
-    setIsOpen(!isOpen);
+  const whatsappNumber = process.env.REACT_APP_WHATSAPPNUMBER;
+  const whatsappLink = whatsappNumber ? `https://wa.me/${whatsappNumber}` : "#";
+
+  const togglePanel = () => setIsOpen((prev) => !prev);
+
+  const handleEmailClick = () => {
+    // Check if the user is already on the /connect page
+    if (location.pathname === "/connect") {
+      toast.info("You are already on this page!");
+    } else {
+      navigate("/connect");
+    }
   };
 
   return (
@@ -21,15 +32,16 @@ function Chatbot() {
         <button
           onClick={() => window.open(whatsappLink, "_blank")}
           className="chatbot-option"
+          disabled={!whatsappNumber}
         >
           WhatsApp Chat
         </button>
-        <button onClick={() => navigate("/connect")} className="chatbot-option">
+        <button onClick={handleEmailClick} className="chatbot-option">
           Send an Email
         </button>
       </div>
     </div>
   );
-}
+};
 
 export default Chatbot;
