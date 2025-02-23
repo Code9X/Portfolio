@@ -7,6 +7,7 @@ import "./Chatbot.css";
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  
   const location = useLocation();
 
   const whatsappNumber = process.env.REACT_APP_WHATSAPPNUMBER;
