@@ -4,6 +4,7 @@ import { SiVisualstudiocode, SiMysql, SiPostman, SiMicrosoftoutlook } from "reac
 import { FaWindows, FaGithub, FaGitlab } from "react-icons/fa";
 import { DiVisualstudio } from "react-icons/di";
 import { FaDatabase } from "react-icons/fa";
+import { SiOpenai } from "react-icons/si";
 
 function Toolstack() {
   return (
@@ -16,6 +17,9 @@ function Toolstack() {
       </Col>
       <Col xs={4} md={2} className="tech-icons" title="GitHub">
         <FaGithub />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons" title="ChatGPT">
+        <SiOpenai />
       </Col>
       <Col xs={4} md={2} className="tech-icons" title=" ">
         <FaGitlab />
