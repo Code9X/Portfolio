@@ -150,7 +150,7 @@ function Connect() {
                 Address <span className="text-danger">*</span>
               </Form.Label>
               <Col sm={9}>
-                <Form.Control
+                <Form.Control 
                   type="text"
                   placeholder="Enter your address"
                   name="address"
