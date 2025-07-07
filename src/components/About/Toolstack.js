@@ -1,17 +1,13 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import { SiVisualstudiocode, SiMysql, SiPostman, SiMicrosoftoutlook } from "react-icons/si";
-import { FaWindows, FaGithub, FaGitlab } from "react-icons/fa";
+import { SiVisualstudiocode, SiMysql, SiPostman, SiMicrosoftoutlook, SiOpenai } from "react-icons/si";
+import { FaWindows, FaGithub, FaGitlab, FaDatabase, FaRobot } from "react-icons/fa";
 import { DiVisualstudio } from "react-icons/di";
-import { FaDatabase } from "react-icons/fa";
-import { SiOpenai } from "react-icons/si";
+import CursorIcon from "../../components/About/CursorIcon";
 
 function Toolstack() {
   return (
     <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
-      <Col xs={4} md={2} className="tech-icons" title="Windows">
-        <FaWindows /> 
-      </Col>
       <Col xs={4} md={2} className="tech-icons" title="Postman">
         <SiPostman />
       </Col>
@@ -21,8 +17,11 @@ function Toolstack() {
       <Col xs={4} md={2} className="tech-icons" title="ChatGPT">
         <SiOpenai />
       </Col>
-      <Col xs={4} md={2} className="tech-icons" title=" ">
+      <Col xs={4} md={2} className="tech-icons" title="GitLab">
         <FaGitlab />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons" title="Cursor AI">
+        <CursorIcon />
       </Col>
       <Col xs={4} md={2} className="tech-icons" title="Microsoft Outlook">
         <SiMicrosoftoutlook />
